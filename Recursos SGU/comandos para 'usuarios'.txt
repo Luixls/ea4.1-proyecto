@@ -1,0 +1,17 @@
+comandos para 'usuarios'
+
+***REGISTRAR USUARIO
+POST a http://localhost:3000/usuarios/registro
+{
+  "nombreUsuario": "NUEVO NOMBRE DE USUARIO",
+  "contraseña": "CONTRASEÑA AQUÍ",
+  "rol": "PROFESOR O DIRECTOR"
+}
+
+
+***LOGIN USUARIO
+POST a http://localhost:3000/usuarios/login
+{
+  "nombreUsuario": "NOMBRE DE USUARIO",
+  "contraseña": "CONTRASEÑA"
+}
