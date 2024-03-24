@@ -1,26 +1,26 @@
-comandos para 'calendario'
+comandos para 'trimestres'
 
 ***LISTAR TRIMESTRES
-GET a http://localhost:3000/calendario/listar
+GET a http://localhost:3000/trimestres/listar
 
 ***AGREGAR TRIMESTRE
-POST a http://localhost:3000/calendario/agregar
-{
-    "Nombre": "2024B",
-    "Fecha_Inicio": "2024-04-08",
-    "Fecha_Final": "2024-07-07"
-}
+POST a http://localhost:3000/trimestres/agregar
+    {
+        "nombre": "2024A",
+        "fecha_inicio": "2024-01-08",
+        "fecha_fin": "2024-04-12"
+    }
 
 ***EDITAR TRIMESTRE
-PUT a http://localhost:3000/calendario/editar/***# de ID aquí***
-{
-    "Nombre": "2024B",
-    "Fecha_Inicio": "2024-04-15",
-    "Fecha_Final": "2024-07-07"
-}
+PUT a http://localhost:3000/trimestres/editar/***# de ID aquí***
+    {
+        "nombre": "2024A",
+        "fecha_inicio": "2024-01-08",
+        "fecha_fin": "2024-04-12"
+    }
 
 ***ELIMINAR TRIMESTRE
-PUT a http://localhost:3000/calendario/eliminar/***# de ID aquí***
+PUT a http://localhost:3000/trimestres/eliminar/***# de ID aquí***
 
 ***VER ACTIVIDADES POR TRIMESTRE-NÚMERO DE SEMANA
 GET a http://localhost:3000/calendario/actividades/***nombre trimestre***/***número de semana*
