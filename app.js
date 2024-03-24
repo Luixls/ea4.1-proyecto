@@ -6,9 +6,11 @@ require("dotenv").config({ path: "./config/datos.env" });
 
 // Importar enrutadores
 const profesoresRouter = require("./routes/profesores"); // Ejemplo de cómo importar tus rutas
+const materiasRouter = require("./routes/materias"); // Ejemplo de cómo importar tus rutas
 
 // Utilizar los enrutadores
 app.use("/profesores", profesoresRouter);
+app.use("/materias", materiasRouter);
 
 // Para iniciar el servidor
 const puerto = process.env.PORT || 3000; // Usa el puerto del .env si está disponible

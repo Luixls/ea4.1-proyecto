@@ -11,11 +11,9 @@ class ProfesoresController {
     });
   }
 
-  static crearProfesor(req, res) {
+  static agregarProfesor(req, res) {
     const { nombre } = req.body;
-    if (!nombre) {
-      return res.status(400).json({ error: "Falta el nombre del profesor" });
-    }
+    console.log(nombre);
     pool.query(
       "INSERT INTO profesores (nombre) VALUES (?)",
       [nombre],
@@ -31,12 +29,10 @@ class ProfesoresController {
     );
   }
 
-  static actualizarProfesor(req, res) {
+  static editarProfesor(req, res) {
     const { nombre } = req.body;
     const { id } = req.params;
-    if (!nombre) {
-      return res.status(400).json({ error: "Falta el nombre del profesor" });
-    }
+    console.log(nombre, id);
     pool.query(
       "UPDATE profesores SET nombre = ? WHERE profesor_id = ?",
       [nombre, id],

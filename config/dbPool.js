@@ -17,7 +17,7 @@ pool.getConnection((err, connection) => {
     console.error("CONEXIÓN FALLIDA AL POOL, BD MySQL", err);
     return;
   }
-  console.log("CONEXIÓN AL POOL DE LA BD MYSQL EXITOSA");
+  console.log("CONEXIÓN AL POOL DE LAS CONEXIONES BD MYSQL EXITOSA");
   connection.release(); // Devolver la conexión al pool
 });
 
