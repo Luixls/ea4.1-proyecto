@@ -6,13 +6,13 @@ GET a http://localhost:3000/profesores/listar
 ***AGREGAR PROFESOR
 POST a http://localhost:3000/profesores/agregar
 {
-    "Nombre": "Augusto González"
+    "nombre": "Augusto González"
 }
 
 ***EDITAR PROFESOR
 PUT a http://localhost:3000/profesores/editar/***# de ID aquí***
 {
-    "Nombre": "Augusto González"
+    "nombre": "Augusto González"
 }
 
 ***ELIMINAR PROFESOR

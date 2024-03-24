@@ -4,19 +4,15 @@ comandos para 'materias'
 GET a http://localhost:3000/materias/listar
 
 ***AGREGAR MATERIA
-POST a http://localhost:3000/materia/agregar
+POST a http://localhost:3000/materias/agregar
 {
-    "Nombre": "Matemática II",
-    "ID_Profesor": "aquí va el # del ID del profesor que dará esta materia",
-    "ID_Seccion": "aquí va el # del ID de la sección de esta materia"
+    "nombre": "Matemática II"
 }
 
 ***EDITAR MATERIA
 PUT a http://localhost:3000/materias/editar/***# de ID aquí***
 {
-    "Nombre": "Física I",
-    "ID_Profesor": "aquí va el # del ID del profesor que dará esta materia",
-    "ID_Seccion": "aquí va el # del ID de la sección de esta materia"
+    "nombre": "Física I"
 }
 
 ***ELIMINAR MATERIA
