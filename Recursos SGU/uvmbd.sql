@@ -1,4 +1,4 @@
-CREATE DATABASE IF NOT EXISTS uvmbd;
+CREATE DATABASE uvmbd;
 USE uvmbd; 
 ALTER USER 'root' @'localhost' IDENTIFIED BY '123';
 -- Creación de la tabla de Profesores
