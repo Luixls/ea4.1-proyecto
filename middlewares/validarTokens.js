@@ -70,4 +70,42 @@ function validarTokenRegistroUsuario(req, res, next) {
   }
 }
 
-module.exports = { validarToken, validarTokenRegistroUsuario };
+function validarEventoGlobalNoGlobal(req, res, next) {
+  const token = req.headers["auth"];
+  const { es_global } = req.body; // Asume que la solicitud incluye si el evento es global o no
+
+  if (!token) {
+    return res
+      .status(403)
+      .json({ error: "Se requiere autenticación para esta acción" });
+  }
+
+  try {
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    req.usuario = decoded;
+
+    // Solo el director puede agregar/editar eventos globales
+    if (es_global && decoded.rol !== "director") {
+      return res.status(403).json({
+        error: "Solo un director puede agregar o editar eventos globales",
+      });
+    }
+
+    // Tanto directores como profesores pueden agregar/editar eventos no globales
+    if (!es_global && !["director", "profesor"].includes(decoded.rol)) {
+      return res.status(403).json({
+        error: "No tienes permiso para agregar o editar este tipo de eventos",
+      });
+    }
+
+    next();
+  } catch (error) {
+    return res.status(401).json({ error: "Token inválido o expirado" });
+  }
+}
+
+module.exports = {
+  validarToken,
+  validarTokenRegistroUsuario,
+  validarEventoGlobalNoGlobal,
+};
