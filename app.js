@@ -20,6 +20,13 @@ app.use("/eventos", eventosRouter);
 app.use("/trimestres", trimestresRouter);
 app.use("/usuarios", usuariosRouter);
 
-// Para iniciar el servidor "npx nodemon app.js"
-const puerto = process.env.PORT || 3000;
-app.listen(puerto, () => console.log(`Servidor corriendo en puerto ${puerto}`));
+// Para crear al admin (director) predeterminado
+const crearAdminPredeterminado = require("./scripts/inicializarAdmin");
+
+// Automatizar creación de admin
+crearAdminPredeterminado().then(() => {
+  // Para iniciar el servidor "npx nodemon app.js"
+  app.listen(3000, () => {
+    console.log("Servidor corriendo en el puerto 3000");
+  });
+});
