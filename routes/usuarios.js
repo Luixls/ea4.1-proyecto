@@ -1,11 +1,11 @@
 const express = require("express");
 const router = express.Router();
 const usuariosController = require("../controllers/usuariosController");
-const { validarTokenOpcional } = require("../middlewares/validarTokens");
+const { validarTokenRegistroUsuario } = require("../middlewares/validarTokens");
 
 router.post(
   "/registro",
-  validarTokenOpcional,
+  validarTokenRegistroUsuario,
   usuariosController.registrarUsuario
 );
 router.post("/login", usuariosController.login);

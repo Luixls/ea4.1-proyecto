@@ -26,7 +26,7 @@ function validarToken(rolesPermitidos = []) {
         next();
       } else {
         res.status(403).json({
-          error: "Acceso denegado: No tienes los permisos necesarios",
+          error: "Acceso denegado: Usted no posee los permisos necesarios",
         });
       }
     } catch (error) {
@@ -35,7 +35,7 @@ function validarToken(rolesPermitidos = []) {
   };
 }
 
-function validarTokenOpcional(req, res, next) {
+function validarTokenRegistroUsuario(req, res, next) {
   const token = req.headers["auth"];
   const { rol } = req.body;
 
@@ -43,8 +43,7 @@ function validarTokenOpcional(req, res, next) {
   if (["director", "profesor"].includes(rol)) {
     if (!token) {
       return res.status(403).json({
-        error:
-          "Se requiere un token para autenticación al momento de crear una cuenta con tal rol",
+        error: "Se requiere autenticación para crear una cuenta con dicho rol",
       });
     }
 
@@ -71,4 +70,4 @@ function validarTokenOpcional(req, res, next) {
   }
 }
 
-module.exports = { validarToken, validarTokenOpcional };
+module.exports = { validarToken, validarTokenRegistroUsuario };
