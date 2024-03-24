@@ -10,6 +10,7 @@ const materiasRouter = require("./routes/materias");
 const seccionesRouter = require("./routes/secciones");
 const eventosRouter = require("./routes/eventos");
 const trimestresRouter = require("./routes/trimestres");
+const usuariosRouter = require("./routes/usuarios");
 
 // Utilizar los enrutadores
 app.use("/profesores", profesoresRouter);
@@ -17,6 +18,7 @@ app.use("/materias", materiasRouter);
 app.use("/secciones", seccionesRouter);
 app.use("/eventos", eventosRouter);
 app.use("/trimestres", trimestresRouter);
+app.use("/usuarios", usuariosRouter);
 
 // Para iniciar el servidor "npx nodemon app.js"
 const puerto = process.env.PORT || 3000;
