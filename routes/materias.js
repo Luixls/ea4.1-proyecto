@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const materiasController = require("../controllers/materiasController");
 
-// Rutas para Profesores
+// Rutas para Materias
 router.get("/listar", materiasController.listarMaterias);
 router.post("/agregar", materiasController.agregarMateria);
 router.put("/editar/:id", materiasController.editarMateria);

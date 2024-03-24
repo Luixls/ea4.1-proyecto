@@ -7,11 +7,13 @@ require("dotenv").config({ path: "./config/datos.env" });
 // Importar enrutadores
 const profesoresRouter = require("./routes/profesores");
 const materiasRouter = require("./routes/materias");
+const seccionesRouter = require("./routes/secciones");
 const trimestresRouter = require("./routes/trimestres");
 
 // Utilizar los enrutadores
 app.use("/profesores", profesoresRouter);
 app.use("/materias", materiasRouter);
+app.use("/secciones", seccionesRouter);
 app.use("/trimestres", trimestresRouter);
 
 // Para iniciar el servidor "npx nodemon app.js"

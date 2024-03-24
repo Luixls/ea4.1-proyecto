@@ -1,0 +1,23 @@
+comandos para 'secciones'
+
+***LISTAR SECCIONES
+GET a http://localhost:3000/secciones/listar
+
+***AGREGAR SECCIÓN
+POST a http://localhost:3000/secciones/agregar
+    {
+        "nombre": "VIV/FI",
+        "profesor_id": 2,
+        "materia_id": 2
+    }
+
+***EDITAR SECCIÓN
+PUT a http://localhost:3000/secciones/editar/***# de ID aquí***
+{
+    "Nombre": "AB",
+    "ID_Materia": "aquí va el # del ID de la materia que le pertenece esta sección",
+    "ID_Profesor": "aquí va el # del ID del profesor que le pertenece esta materia"
+}
+
+***ELIMINAR SECCIÓN
+PUT a http://localhost:3000/secciones/eliminar/***# de ID aquí***
