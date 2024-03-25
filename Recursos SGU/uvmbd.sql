@@ -30,8 +30,10 @@ CREATE TABLE eventos (
     numero_semana INT,
     fecha DATE,
     rasgos VARCHAR(50),
+	materia_id INT,
     seccion_id INT,
     es_global BOOLEAN DEFAULT FALSE,
+	FOREIGN KEY (materia_id) REFERENCES materias(materia_id) ON DELETE SET NULL,
     FOREIGN KEY (seccion_id) REFERENCES secciones(seccion_id) ON DELETE SET NULL
 );
 
@@ -68,6 +70,6 @@ INSERT INTO eventos (nombre, numero_semana, fecha, rasgos, es_global) VALUES ('C
 INSERT INTO eventos (nombre, numero_semana, fecha, rasgos, es_global) VALUES ('Día Feriado - Aniversario de la Facultad de Ingeniería', NULL, '2024-03-22', 'Feriado', TRUE);
 
 -- Eventos específicos de sección
-INSERT INTO eventos (nombre, numero_semana, fecha, rasgos, seccion_id, es_global) VALUES ('Clase Unidad I', 1, NULL, 'Clase', 1, FALSE);
-INSERT INTO eventos (nombre, numero_semana, fecha, rasgos, seccion_id, es_global) VALUES ('Clase Unidad I, Continuación', 2, NULL, 'Clase', 1, FALSE);
-INSERT INTO eventos (nombre, numero_semana, fecha, rasgos, seccion_id, es_global) VALUES ('Evaluación Unidad I', 3, NULL, 'Evaluación, Ponderación 20%', 1, FALSE);
+INSERT INTO eventos (nombre, numero_semana, fecha, rasgos, materia_id, seccion_id, es_global) VALUES ('Clase Unidad I', 1, NULL, 'Clase', 1, 1, FALSE);
+INSERT INTO eventos (nombre, numero_semana, fecha, rasgos, materia_id, seccion_id, es_global) VALUES ('Clase Unidad I, Continuación', 2, NULL, 'Clase', 1, 1, FALSE);
+INSERT INTO eventos (nombre, numero_semana, fecha, rasgos, materia_id, seccion_id, es_global) VALUES ('Evaluación Unidad I', 3, NULL, 'Evaluación, Ponderación 20%', 1, 1, FALSE);

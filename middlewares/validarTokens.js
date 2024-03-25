@@ -70,7 +70,7 @@ function validarTokenRegistroUsuario(req, res, next) {
   }
 }
 
-function validarEventoGlobalNoGlobal(req, res, next) {
+function validarTokenEventoGlobalNoGlobal(req, res, next) {
   const token = req.headers["auth"];
   const { es_global } = req.body; // Asume que la solicitud incluye si el evento es global o no
 
@@ -107,5 +107,5 @@ function validarEventoGlobalNoGlobal(req, res, next) {
 module.exports = {
   validarToken,
   validarTokenRegistroUsuario,
-  validarEventoGlobalNoGlobal,
+  validarTokenEventoGlobalNoGlobal,
 };

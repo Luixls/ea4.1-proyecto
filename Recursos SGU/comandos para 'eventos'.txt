@@ -12,17 +12,20 @@ POST a http://localhost:3000/eventos/agregar
         "fecha": null,
         "rasgos": "Clase",
         "seccion_id": 1,
-        "es_global": 0,
-        "seccion_nombre": "VIV/FI"
+	"materia_id": 1
     }
 
 ***EDITAR EVENTO
 PUT a http://localhost:3000/eventos/editar/***# de ID aquí***
-{
-    "Nombre": "Evaluación Unidad I",
-    "Fecha": "2024-01-19",
-    "ID_Materia": "aquí va el # del ID de la materia que le pertenece este evento"
-}
+    {
+        "evento_id": 4,
+        "nombre": "Clase Unidad I",
+        "numero_semana": 1,
+        "fecha": null,
+        "rasgos": "Clase",
+        "seccion_id": 1,
+	"materia_id": 1
+    }
 
 ***AGREGAR EVENTO GLOBAL
 POST a http://localhost:3000/eventos/agregar
@@ -32,8 +35,8 @@ POST a http://localhost:3000/eventos/agregar
         "fecha": "2024-01-08",
         "rasgos": "Bienvenida al 2024A",
         "seccion_id": null,
-        "es_global": 1,
-        "seccion_nombre": null
+	"materia_id": null,
+        "es_global": 1
     }
 
 ***ELIMINAR EVENTO

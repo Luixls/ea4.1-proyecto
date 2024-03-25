@@ -2,9 +2,10 @@ const pool = require("../config/dbPool");
 
 class EventosController {
   static listarEventos(req, res) {
-    const query = `SELECT eventos.evento_id, eventos.nombre, eventos.numero_semana, eventos.fecha, eventos.rasgos, eventos.seccion_id, eventos.es_global, secciones.nombre AS seccion_nombre
+    const query = `SELECT eventos.evento_id, eventos.nombre, eventos.numero_semana, eventos.fecha, eventos.rasgos, eventos.seccion_id, eventos.materia_id, eventos.es_global, secciones.nombre AS seccion_nombre, materias.nombre AS materia_nombre
                    FROM eventos
-                   LEFT JOIN secciones ON eventos.seccion_id = secciones.seccion_id`;
+                   LEFT JOIN secciones ON eventos.seccion_id = secciones.seccion_id
+                   LEFT JOIN materias ON eventos.materia_id = materias.materia_id`;
     pool.query(query, (err, rows) => {
       if (err) {
         res.status(500).json({ error: "Error al obtener los eventos" });
@@ -15,13 +16,20 @@ class EventosController {
   }
 
   static agregarEvento(req, res) {
-    const { nombre, numero_semana, fecha, rasgos, seccion_id, es_global } =
-      req.body;
+    const {
+      nombre,
+      numero_semana,
+      fecha,
+      rasgos,
+      seccion_id,
+      materia_id,
+      es_global,
+    } = req.body;
     const query =
-      "INSERT INTO eventos (nombre, numero_semana, fecha, rasgos, seccion_id, es_global) VALUES (?, ?, ?, ?, ?, ?)";
+      "INSERT INTO eventos (nombre, numero_semana, fecha, rasgos, seccion_id, materia_id, es_global) VALUES (?, ?, ?, ?, ?, ?, ?)";
     pool.query(
       query,
-      [nombre, numero_semana, fecha, rasgos, seccion_id, es_global],
+      [nombre, numero_semana, fecha, rasgos, seccion_id, materia_id, es_global],
       (err, results) => {
         if (err) {
           res.status(500).json({ error: "Error al crear el evento" });
@@ -35,14 +43,30 @@ class EventosController {
   }
 
   static editarEvento(req, res) {
-    const { nombre, numero_semana, fecha, rasgos, seccion_id, es_global } =
-      req.body;
+    const {
+      nombre,
+      numero_semana,
+      fecha,
+      rasgos,
+      seccion_id,
+      materia_id,
+      es_global,
+    } = req.body;
     const { id } = req.params;
     const query =
-      "UPDATE eventos SET nombre = ?, numero_semana = ?, fecha = ?, rasgos = ?, seccion_id = ?, es_global = ? WHERE evento_id = ?";
+      "UPDATE eventos SET nombre = ?, numero_semana = ?, fecha = ?, rasgos = ?, seccion_id = ?, materia_id = ?, es_global = ? WHERE evento_id = ?";
     pool.query(
       query,
-      [nombre, numero_semana, fecha, rasgos, seccion_id, es_global, id],
+      [
+        nombre,
+        numero_semana,
+        fecha,
+        rasgos,
+        seccion_id,
+        materia_id,
+        es_global,
+        id,
+      ],
       (err, results) => {
         if (err) {
           res.status(500).json({ error: "Error al actualizar el evento" });
