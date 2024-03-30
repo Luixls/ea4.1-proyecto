@@ -11,7 +11,6 @@ router.get("/listar", (req, res) => {
     .then((trimestres) => res.render("listarTrimestres", { trimestres }))
     .catch((err) => res.status(500).send(err.error));
 });
-
 router.post(
   "/agregar",
   validarTrimestre,

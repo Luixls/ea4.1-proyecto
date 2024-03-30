@@ -1,13 +1,15 @@
 const pool = require("../config/dbPool");
 
 class ProfesoresController {
-  static listarProfesores(req, res) {
-    pool.query("SELECT * FROM profesores", (err, rows) => {
-      if (err) {
-        res.status(500).json({ error: "Error al obtener los profesores" });
-      } else {
-        res.status(200).json(rows);
-      }
+  static listarProfesores() {
+    return new Promise((resolve, reject) => {
+      pool.query("SELECT * FROM profesores", (err, rows) => {
+        if (err) {
+          reject({ error: "Error al obtener los profesores" });
+        } else {
+          resolve(rows);
+        }
+      });
     });
   }
 

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lista de Profesores</title>
+    <link rel="stylesheet" href="/css/estilos.css" />
+  </head>
+  <body>
+    <h1>Profesores</h1>
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nombre</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% profesores.forEach(profesor => { %>
+        <tr>
+          <td><%= profesor.profesor_id %></td>
+          <td><%= profesor.nombre %></td>
+        </tr>
+        <% }) %>
+      </tbody>
+    </table>
+  </body>
+</html>

@@ -14,7 +14,6 @@ router.get("/listar", (req, res) => {
     .then((eventos) => res.render("listarEventos", { eventos })) // Pasando los datos de eventos a la vista EJS
     .catch((err) => res.status(500).send("Error al obtener los eventos")); // OJO: Hace falta la validación para que solo se pueda visualizar eventos con tokens
 });
-
 router.post(
   "/agregar",
   validarEvento,
