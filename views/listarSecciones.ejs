@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lista de Secciones</title>
+    <link rel="stylesheet" href="/css/estilos.css" />
+  </head>
+  <body>
+    <h1>Secciones</h1>
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nombre de Sección</th>
+          <th>Profesor</th>
+          <th>Materia</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% secciones.forEach(seccion => { %>
+        <tr>
+          <td><%= seccion.seccion_id %></td>
+          <td><%= seccion.seccion_nombre %></td>
+          <td><%= seccion.profesor_nombre %></td>
+          <td><%= seccion.materia_nombre %></td>
+        </tr>
+        <% }) %>
+      </tbody>
+    </table>
+  </body>
+</html>

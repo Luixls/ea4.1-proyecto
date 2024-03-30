@@ -1,17 +1,19 @@
 const pool = require("../config/dbPool");
 
 class SeccionesController {
-  static listarSecciones(req, res) {
-    const query = `SELECT secciones.seccion_id, secciones.nombre AS seccion_nombre, profesores.nombre AS profesor_nombre, materias.nombre AS materia_nombre
-                   FROM secciones
-                   LEFT JOIN profesores ON secciones.profesor_id = profesores.profesor_id
-                   LEFT JOIN materias ON secciones.materia_id = materias.materia_id`;
-    pool.query(query, (err, rows) => {
-      if (err) {
-        res.status(500).json({ error: "Error al obtener las secciones" });
-      } else {
-        res.status(200).json(rows);
-      }
+  static listarSecciones() {
+    return new Promise((resolve, reject) => {
+      const query = `SELECT secciones.seccion_id, secciones.nombre AS seccion_nombre, profesores.nombre AS profesor_nombre, materias.nombre AS materia_nombre
+                     FROM secciones
+                     LEFT JOIN profesores ON secciones.profesor_id = profesores.profesor_id
+                     LEFT JOIN materias ON secciones.materia_id = materias.materia_id`;
+      pool.query(query, (err, rows) => {
+        if (err) {
+          reject({ error: "Error al obtener las secciones" });
+        } else {
+          resolve(rows);
+        }
+      });
     });
   }
 
