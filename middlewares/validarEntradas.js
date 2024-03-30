@@ -59,6 +59,13 @@ const validarSeccion = [
     .isInt({ min: 1 })
     .withMessage("El ID de la materia debe ser un número positivo."),
 
+  // Validación del trimestre_id
+  check("trimestre_id")
+    .notEmpty()
+    .withMessage("El ID del trimestre obligatorio.")
+    .isInt({ min: 1 })
+    .withMessage("El ID del trimestre debe ser un número positivo."),
+
   // Middleware para manejar los errores de validación
   (req, res, next) => {
     const errors = validationResult(req);
@@ -109,20 +116,29 @@ const validarTrimestre = [
 ];
 
 const validarEvento = [
+  // Validar nombre
   check("nombre")
     .trim()
     .notEmpty()
     .withMessage("El nombre del evento es obligatorio.")
     .isLength({ min: 2 })
     .withMessage("El nombre debe tener al menos 2 caracteres."),
+
+  // Validar semanas (puede ser nulo)
   check("numero_semana")
+    .optional({ nullable: true, checkFalsy: true })
     .isInt({ min: 1 })
     .withMessage("El número de semana debe ser un número entero positivo."),
+
+  // Validar fechas (puede ser nulo)
   check("fecha")
     .optional({ nullable: true, checkFalsy: true })
     .isISO8601()
     .withMessage("La fecha debe tener un formato válido (AAAA-MM-DD)."),
+
+  // Etc...
   check("materia_id")
+    .optional({ nullable: true, checkFalsy: true })
     .isInt({ min: 1 })
     .withMessage("El ID de la materia debe ser un número entero positivo."),
   check("seccion_id")
@@ -130,6 +146,7 @@ const validarEvento = [
     .isInt({ min: 1 })
     .withMessage("El ID de la sección debe ser un número entero positivo."),
   check("es_global")
+    .if(check("es_global").exists())
     .isBoolean()
     .withMessage("es_global debe ser un valor booleano."),
 

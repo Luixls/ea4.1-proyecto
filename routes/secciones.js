@@ -29,5 +29,21 @@ router.delete(
   validarToken(["director"]),
   seccionesController.eliminarSeccion
 );
+router.get("/eventos/:id", (req, res) => {
+  const seccionId = req.params.id;
+  seccionesController
+    .eventosSeccion(seccionId)
+    .then((data) => {
+      if (data.length > 0) {
+        res.render("eventosSeccion", {
+          eventos: data,
+          seccionInfo: data[0],
+        });
+      } else {
+        res.send("No se encontraron detalles para la sección especificada.");
+      }
+    })
+    .catch((err) => res.status(500).send(err.error));
+});
 
 module.exports = router;

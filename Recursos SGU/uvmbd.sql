@@ -1,6 +1,15 @@
 CREATE DATABASE uvmbd;
 USE uvmbd; 
 ALTER USER 'root' @'localhost' IDENTIFIED BY '123';
+
+-- Creación de la tabla de Trimestres
+CREATE TABLE trimestres (
+    trimestre_id INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(50) NOT NULL,
+    fecha_inicio DATE NOT NULL,
+    fecha_fin DATE NOT NULL
+);
+
 -- Creación de la tabla de Profesores
 CREATE TABLE profesores (
     profesor_id INT AUTO_INCREMENT PRIMARY KEY,
@@ -19,8 +28,10 @@ CREATE TABLE secciones (
     nombre VARCHAR(50) NOT NULL,
     profesor_id INT,
     materia_id INT,
+    trimestre_id INT,
     FOREIGN KEY (profesor_id) REFERENCES profesores(profesor_id) ON DELETE SET NULL,
-    FOREIGN KEY (materia_id) REFERENCES materias(materia_id) ON DELETE SET NULL
+    FOREIGN KEY (materia_id) REFERENCES materias(materia_id) ON DELETE SET NULL,
+	FOREIGN KEY (trimestre_id) REFERENCES trimestres(trimestre_id) ON DELETE SET NULL
 );
 
 -- Creación de la tabla de Eventos
@@ -35,14 +46,6 @@ CREATE TABLE eventos (
     es_global BOOLEAN DEFAULT FALSE,
 	FOREIGN KEY (materia_id) REFERENCES materias(materia_id) ON DELETE SET NULL,
     FOREIGN KEY (seccion_id) REFERENCES secciones(seccion_id) ON DELETE SET NULL
-);
-
--- Creación de la tabla de Trimestres
-CREATE TABLE trimestres (
-    trimestre_id INT AUTO_INCREMENT PRIMARY KEY,
-    nombre VARCHAR(50) NOT NULL,
-    fecha_inicio DATE NOT NULL,
-    fecha_fin DATE NOT NULL
 );
 
 -- Creación de la tabla de Usuarios
@@ -62,7 +65,7 @@ INSERT INTO profesores (nombre) VALUES ('Juan Pérez');
 
 INSERT INTO materias (nombre) VALUES ('Matemática I');
 
-INSERT INTO secciones (nombre, profesor_id, materia_id) VALUES ('VIV/FI', 1, 1);
+INSERT INTO secciones (nombre, profesor_id, materia_id, trimestre_id) VALUES ('VIV/FI', 1, 1, 1);
 
 -- Eventos globales
 INSERT INTO eventos (nombre, numero_semana, fecha, rasgos, es_global) VALUES ('Bienvenida al Trimestre', NULL, '2024-01-08', 'Bienvenida al 2024A', TRUE);
