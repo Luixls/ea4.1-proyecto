@@ -28,5 +28,11 @@ router.delete(
   validarToken(["director"]),
   profesoresController.eliminarProfesor
 );
+router.get("/detalles", (req, res) => {
+  profesoresController
+    .listarProfesoresMateriasSecciones()
+    .then((datos) => res.render("profesoresMateriasSecciones", { datos }))
+    .catch((err) => res.status(500).send(err.error));
+});
 
 module.exports = router;

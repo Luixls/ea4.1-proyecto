@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Detalles de los Profesores</title>
+    <link rel="stylesheet" href="/css/estilos.css" />
+  </head>
+  <body>
+    <h1>Detalles de los Profesores</h1>
+    <table>
+      <thead>
+        <tr>
+          <th>Profesor</th>
+          <th>Materia</th>
+          <th>Sección</th>
+          <th>Trimestre</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% datos.forEach(dato => { %>
+        <tr>
+          <td><%= dato.profesor_nombre %></td>
+          <td><%= dato.materia_nombre %></td>
+          <td><%= dato.seccion_nombre %></td>
+          <td><%= dato.trimestre_nombre %></td>
+        </tr>
+        <% }) %>
+      </tbody>
+    </table>
+  </body>
+</html>

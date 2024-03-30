@@ -66,6 +66,34 @@ class ProfesoresController {
       }
     );
   }
+
+  static listarProfesoresMateriasSecciones() {
+    return new Promise((resolve, reject) => {
+      const query = `
+          SELECT 
+              profesores.profesor_id, 
+              profesores.nombre AS profesor_nombre, 
+              materias.nombre AS materia_nombre, 
+              secciones.nombre AS seccion_nombre,
+              trimestres.nombre AS trimestre_nombre
+          FROM profesores
+          JOIN secciones ON profesores.profesor_id = secciones.profesor_id
+          JOIN materias ON secciones.materia_id = materias.materia_id
+          JOIN trimestres ON secciones.trimestre_id = trimestres.trimestre_id
+          ORDER BY profesores.profesor_id, materias.materia_id, secciones.seccion_id`;
+
+      pool.query(query, (err, rows) => {
+        if (err) {
+          reject({
+            error:
+              "Error al obtener la lista de profesores con materias y secciones",
+          });
+        } else {
+          resolve(rows);
+        }
+      });
+    });
+  }
 }
 
 module.exports = ProfesoresController;
