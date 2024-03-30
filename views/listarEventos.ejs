@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lista de Eventos</title>
+    <link rel="stylesheet" href="/css/estilos.css" />
+  </head>
+  <body>
+    <h1>Eventos</h1>
+    <table>
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Número de Semana</th>
+          <th>Fecha</th>
+          <th>Rasgos</th>
+          <th>Materia</th>
+          <th>Sección</th>
+          <th>Global</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% if(eventos.length > 0) { %> <% eventos.forEach(function(evento) { %>
+        <tr>
+          <td><%= evento.nombre %></td>
+          <td><%= evento.numero_semana %></td>
+          <td><%= evento.fecha ? evento.fecha : 'No especificado' %></td>
+          <td><%= evento.rasgos %></td>
+          <td><%= evento.materia_nombre %></td>
+          <td><%= evento.seccion_nombre %></td>
+          <td><%= evento.es_global ? 'Sí' : 'No' %></td>
+        </tr>
+        <% }); %> <% } else { %>
+        <tr>
+          <td colspan="7">No hay eventos para mostrar.</td>
+        </tr>
+        <% } %>
+      </tbody>
+    </table>
+  </body>
+</html>

@@ -1,17 +1,28 @@
 const pool = require("../config/dbPool");
+const moment = require("moment");
+moment.locale("es"); // Esto es para usar el módulo de Node.js "moment" en español
 
 class EventosController {
-  static listarEventos(req, res) {
-    const query = `SELECT eventos.evento_id, eventos.nombre, eventos.numero_semana, eventos.fecha, eventos.rasgos, eventos.seccion_id, eventos.materia_id, eventos.es_global, secciones.nombre AS seccion_nombre, materias.nombre AS materia_nombre
-                   FROM eventos
-                   LEFT JOIN secciones ON eventos.seccion_id = secciones.seccion_id
-                   LEFT JOIN materias ON eventos.materia_id = materias.materia_id`;
-    pool.query(query, (err, rows) => {
-      if (err) {
-        res.status(500).json({ error: "Error al obtener los eventos" });
-      } else {
-        res.status(200).json(rows);
-      }
+  static listarEventos() {
+    return new Promise((resolve, reject) => {
+      const query = `SELECT eventos.evento_id, eventos.nombre, eventos.numero_semana, eventos.fecha, eventos.rasgos, eventos.seccion_id, eventos.materia_id, eventos.es_global, secciones.nombre AS seccion_nombre, materias.nombre AS materia_nombre
+                     FROM eventos
+                     LEFT JOIN secciones ON eventos.seccion_id = secciones.seccion_id
+                     LEFT JOIN materias ON eventos.materia_id = materias.materia_id`;
+      pool.query(query, (err, rows) => {
+        if (err) {
+          reject(err);
+        } else {
+          // Formatear cada fecha de evento antes de enviar
+          const eventosFormateados = rows.map((evento) => {
+            if (evento.fecha) {
+              evento.fecha = moment(evento.fecha).format("LL"); // Formato 'LL' convierte el formato a 'D [de] MMMM [de] YYYY'
+            }
+            return evento;
+          });
+          resolve(eventosFormateados);
+        }
+      });
     });
   }
 
