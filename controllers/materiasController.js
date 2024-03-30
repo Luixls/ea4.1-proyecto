@@ -1,13 +1,15 @@
 const pool = require("../config/dbPool");
 
 class MateriasController {
-  static listarMaterias(req, res) {
-    pool.query("SELECT * FROM materias", (err, rows) => {
-      if (err) {
-        res.status(500).json({ error: "Error al obtener las materias" });
-      } else {
-        res.status(200).json(rows);
-      }
+  static listarMaterias() {
+    return new Promise((resolve, reject) => {
+      pool.query("SELECT * FROM materias", (err, rows) => {
+        if (err) {
+          reject({ error: "Error al obtener las materias" });
+        } else {
+          resolve(rows);
+        }
+      });
     });
   }
 
