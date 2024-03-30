@@ -1,13 +1,24 @@
 const pool = require("../config/dbPool");
+const moment = require("moment");
+moment.locale("es");
 
 class TrimestresController {
-  static listarTrimestres(req, res) {
-    pool.query("SELECT * FROM trimestres", (err, rows) => {
-      if (err) {
-        res.status(500).json({ error: "Error al obtener los trimestres" });
-      } else {
-        res.status(200).json(rows);
-      }
+  static listarTrimestres() {
+    return new Promise((resolve, reject) => {
+      pool.query("SELECT * FROM trimestres", (err, rows) => {
+        if (err) {
+          reject({ error: "Error al obtener los trimestres" });
+        } else {
+          const trimestresFormateados = rows.map((trimestre) => {
+            trimestre.fecha_inicio = moment(trimestre.fecha_inicio).format(
+              "LL"
+            );
+            trimestre.fecha_fin = moment(trimestre.fecha_fin).format("LL");
+            return trimestre;
+          });
+          resolve(trimestresFormateados);
+        }
+      });
     });
   }
 
