@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Eventos por Materia</title>
+    <link rel="stylesheet" href="/css/estilos.css" />
+  </head>
+  <body>
+    <h1>
+      Eventos de la Materia: <%= eventos[0]?.materia_nombre || 'No Especificada'
+      %>
+    </h1>
+    <table>
+      <thead>
+        <tr>
+          <th>Semana</th>
+          <th>Evento</th>
+          <th>Fecha</th>
+          <th>Rasgos</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% eventos.forEach(evento => { %>
+        <tr>
+          <td><%= evento.numero_semana %></td>
+          <td><%= evento.evento_nombre %></td>
+          <td><%= evento.fecha %></td>
+          <td><%= evento.rasgos %></td>
+        </tr>
+        <% }) %> <% if(eventos.length === 0) { %>
+        <tr>
+          <td colspan="4">No hay eventos programados para esta materia.</td>
+        </tr>
+        <% } %>
+      </tbody>
+    </table>
+  </body>
+</html>

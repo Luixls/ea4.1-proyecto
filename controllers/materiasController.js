@@ -66,6 +66,37 @@ class MateriasController {
       }
     );
   }
+
+  static eventosPorMateria(materiaId) {
+    return new Promise((resolve, reject) => {
+      const query = `
+          SELECT 
+              materias.nombre AS materia_nombre, 
+              eventos.nombre AS evento_nombre, 
+              eventos.numero_semana, 
+              eventos.fecha, 
+              eventos.rasgos
+          FROM eventos
+          JOIN materias ON eventos.materia_id = materias.materia_id
+          WHERE eventos.materia_id = ?
+          ORDER BY eventos.numero_semana ASC, eventos.fecha ASC`;
+
+      pool.query(query, [materiaId], (err, rows) => {
+        if (err) {
+          reject({ error: "Error al obtener eventos por materia" });
+        } else {
+          // Opcional: formatear fechas con moment
+          const eventosFormateados = rows.map((evento) => {
+            if (evento.fecha) {
+              evento.fecha = moment(evento.fecha).format("LL");
+            }
+            return evento;
+          });
+          resolve(eventosFormateados);
+        }
+      });
+    });
+  }
 }
 
 module.exports = MateriasController;

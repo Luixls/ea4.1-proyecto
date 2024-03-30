@@ -28,5 +28,12 @@ router.delete(
   validarToken(["director"]),
   materiasController.eliminarMateria
 );
+router.get("/eventos/:id", (req, res) => {
+  const materiaId = req.params.id;
+  materiasController
+    .eventosPorMateria(materiaId)
+    .then((eventos) => res.render("eventosMateria", { eventos }))
+    .catch((err) => res.status(500).send(err.error));
+});
 
 module.exports = router;

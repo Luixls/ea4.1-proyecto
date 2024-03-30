@@ -1,4 +1,4 @@
-comandos para 'materias'
+!!! comandos para 'materias' !!!
 
 ***LISTAR MATERIAS
 GET a http://localhost:3000/materias/listar
@@ -17,3 +17,6 @@ PUT a http://localhost:3000/materias/editar/***# de ID aquí***
 
 ***ELIMINAR MATERIA
 PUT a http://localhost:3000/materias/eliminar/***# de ID aquí***
+
+***LISTAR EVENTOS DE UNA MATERIA
+GET a http://localhost:3000/materias/eventos/***# de ID aquí***

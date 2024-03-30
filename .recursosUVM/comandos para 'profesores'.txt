@@ -1,4 +1,4 @@
-comandos para 'profesores'
+!!! comandos para 'profesores' !!!
 
 ***LISTAR PROFESORES
 GET a http://localhost:3000/profesores/listar
@@ -17,3 +17,6 @@ PUT a http://localhost:3000/profesores/editar/***# de ID aquí***
 
 ***ELIMINAR PROFESOR
 PUT a http://localhost:3000/profesores/eliminar/***# de ID aquí***
+
+***LISTAR MATERIAS/SECCIONES DE LOS PROFESORES
+GET a http://localhost:3000/profesores/detalles
