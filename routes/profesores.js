@@ -5,12 +5,16 @@ const { validarToken } = require("../middlewares/validarTokens");
 const { validarProfesor } = require("../middlewares/validarEntradas");
 
 // Rutas para Profesores
-router.get("/listar", (req, res) => {
-  profesoresController
-    .listarProfesores()
-    .then((profesores) => res.render("listarProfesores", { profesores }))
-    .catch((err) => res.status(500).send(err.error));
-}); // Luego validaremos validarToken(['director', 'profesor', 'estudiante'])
+router.get(
+  "/listar",
+  // validarToken(["director", "profesor", "estudiante"]),
+  (req, res) => {
+    profesoresController
+      .listarProfesores()
+      .then((profesores) => res.render("listarProfesores", { profesores }))
+      .catch((err) => res.status(500).send(err.error));
+  }
+); 
 router.post(
   "/agregar",
   validarProfesor,

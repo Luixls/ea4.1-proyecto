@@ -62,7 +62,7 @@ INSERT INTO trimestres (nombre, fecha_inicio, fecha_fin) VALUES ('2024B', '2024-
 
 INSERT INTO profesores (nombre) VALUES ('Juan Pérez');
 
-INSERT INTO materias (nombre) VALUES ('Materia Ejemplo');
+INSERT INTO materias (nombre) VALUES ('Física I');
 
 INSERT INTO secciones (nombre, profesor_id, materia_id, trimestre_id) VALUES ('VIV/FI', 1, 1, 1);
 

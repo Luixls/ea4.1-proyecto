@@ -48,7 +48,7 @@ class SeccionesController {
     const { id } = req.params;
     console.log(nombre, profesor_id, materia_id, trimestre_id, id);
     const query =
-      "UPDATE secciones SET nombre = ?, profesor_id = ?, materia_id = ?, trimestre_id = ?, WHERE seccion_id = ?";
+      "UPDATE secciones SET nombre = ?, profesor_id = ?, materia_id = ?, trimestre_id = ? WHERE seccion_id = ?";
     pool.query(
       query,
       [nombre, profesor_id, materia_id, trimestre_id, id],

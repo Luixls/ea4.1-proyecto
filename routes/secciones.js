@@ -5,12 +5,16 @@ const { validarToken } = require("../middlewares/validarTokens");
 const { validarSeccion } = require("../middlewares/validarEntradas");
 
 // Rutas para Secciones
-router.get("/listar", (req, res) => {
-  seccionesController
-    .listarSecciones()
-    .then((secciones) => res.render("listarSecciones", { secciones }))
-    .catch((err) => res.status(500).send(err.error));
-}); // Luego validaremos validarToken(['director', 'profesor', 'estudiante'])
+router.get(
+  "/listar",
+  // validarToken(["director", "profesor", "estudiante"]),
+  (req, res) => {
+    seccionesController
+      .listarSecciones()
+      .then((secciones) => res.render("listarSecciones", { secciones }))
+      .catch((err) => res.status(500).send(err.error));
+  }
+);
 router.post(
   "/agregar",
   validarSeccion,
@@ -34,12 +38,11 @@ router.get("/eventos/:id", (req, res) => {
     .eventosSeccion(seccionId)
     .then(({ seccionInfo, eventos }) => {
       if (!seccionInfo) {
-        // Verifica si seccionInfo no existe
         res.send("No se encontraron detalles para la sección especificada.");
       } else {
         res.render("eventosSeccion", {
           eventos: eventos,
-          seccionInfo: seccionInfo, // Asegúrate de pasar seccionInfo a la vista
+          seccionInfo: seccionInfo,
         });
       }
     })
