@@ -14,7 +14,7 @@ const {
 // Rutas para Eventos
 router.get(
   "/listar",
-  // validarToken(["director", "profesor", "estudiante"]),
+  validarToken(["director", "profesor", "estudiante"]),
   (req, res) => {
     eventosController
       .listarEventos()
@@ -39,15 +39,19 @@ router.delete(
   validarToken(["director"]),
   eventosController.eliminarEvento
 );
-router.get("/profesores/:fechaConsulta", (req, res) => {
-  const { fechaConsulta } = req.params;
-  eventosController
-    .proximosEventosProfesores(fechaConsulta)
-    .then((eventos) => {
-      res.render("eventosProfesores", { eventos, moment });
-    })
-    .catch((err) => res.status(500).send(err.error));
-});
+router.get(
+  "/profesores/:fechaConsulta",
+  validarToken(["director", "profesor", "estudiante"]),
+  (req, res) => {
+    const { fechaConsulta } = req.params;
+    eventosController
+      .proximosEventosProfesores(fechaConsulta)
+      .then((eventos) => {
+        res.render("eventosProfesores", { eventos, moment });
+      })
+      .catch((err) => res.status(500).send(err.error));
+  }
+);
 router.post(
   "/asignar",
   validarAsignarEventos,

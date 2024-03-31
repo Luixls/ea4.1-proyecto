@@ -53,7 +53,7 @@ PUT a http://localhost:3000/eventos/editar/***# de ID aquí***
 PUT a http://localhost:3000/eventos/eliminar/***# de ID aquí***
 
 ***VER LOS EVENTOS DENTRO DE 2 SEMANAS PARA LOS PROFESORES
-http://localhost:3000/eventos/profesores/***FECHA AAAA-MM-DD****
+http://localhost:3000/eventos/profesores/***FECHA AAAA-MM-DD***
 
 ***ASIGNAR EVENTOS A SECCIÓN/MATERIA ESPECÍFICOS
 POST a http://localhost:3000/eventos/asignar

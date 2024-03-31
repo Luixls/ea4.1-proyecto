@@ -7,7 +7,7 @@ const { validarSeccion } = require("../middlewares/validarEntradas");
 // Rutas para Secciones
 router.get(
   "/listar",
-  // validarToken(["director", "profesor", "estudiante"]),
+  validarToken(["director", "profesor", "estudiante"]),
   (req, res) => {
     seccionesController
       .listarSecciones()
@@ -32,21 +32,25 @@ router.delete(
   validarToken(["director"]),
   seccionesController.eliminarSeccion
 );
-router.get("/eventos/:id", (req, res) => {
-  const seccionId = req.params.id;
-  seccionesController
-    .eventosSeccion(seccionId)
-    .then(({ seccionInfo, eventos }) => {
-      if (!seccionInfo) {
-        res.send("No se encontraron detalles para la sección especificada.");
-      } else {
-        res.render("eventosSeccion", {
-          eventos: eventos,
-          seccionInfo: seccionInfo,
-        });
-      }
-    })
-    .catch((err) => res.status(500).send(err.error));
-});
+router.get(
+  "/eventos/:id",
+  validarToken(["director", "profesor", "estudiante"]),
+  (req, res) => {
+    const seccionId = req.params.id;
+    seccionesController
+      .eventosSeccion(seccionId)
+      .then(({ seccionInfo, eventos }) => {
+        if (!seccionInfo) {
+          res.send("No se encontraron detalles para la sección especificada.");
+        } else {
+          res.render("eventosSeccion", {
+            eventos: eventos,
+            seccionInfo: seccionInfo,
+          });
+        }
+      })
+      .catch((err) => res.status(500).send(err.error));
+  }
+);
 
 module.exports = router;

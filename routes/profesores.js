@@ -7,14 +7,14 @@ const { validarProfesor } = require("../middlewares/validarEntradas");
 // Rutas para Profesores
 router.get(
   "/listar",
-  // validarToken(["director", "profesor", "estudiante"]),
+  validarToken(["director", "profesor", "estudiante"]),
   (req, res) => {
     profesoresController
       .listarProfesores()
       .then((profesores) => res.render("listarProfesores", { profesores }))
       .catch((err) => res.status(500).send(err.error));
   }
-); 
+);
 router.post(
   "/agregar",
   validarProfesor,
@@ -32,11 +32,15 @@ router.delete(
   validarToken(["director"]),
   profesoresController.eliminarProfesor
 );
-router.get("/detalles", (req, res) => {
-  profesoresController
-    .listarProfesoresMateriasSecciones()
-    .then((datos) => res.render("profesoresMateriasSecciones", { datos }))
-    .catch((err) => res.status(500).send(err.error));
-});
+router.get(
+  "/detalles",
+  validarToken(["director", "profesor", "estudiante"]),
+  (req, res) => {
+    profesoresController
+      .listarProfesoresMateriasSecciones()
+      .then((datos) => res.render("profesoresMateriasSecciones", { datos }))
+      .catch((err) => res.status(500).send(err.error));
+  }
+);
 
 module.exports = router;
