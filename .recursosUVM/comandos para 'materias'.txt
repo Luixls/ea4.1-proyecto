@@ -6,13 +6,13 @@ GET a http://localhost:3000/materias/listar
 ***AGREGAR MATERIA
 POST a http://localhost:3000/materias/agregar
 {
-    "nombre": "Matemática II"
+    "nombre": "Matemática"
 }
 
 ***EDITAR MATERIA
 PUT a http://localhost:3000/materias/editar/***# de ID aquí***
 {
-    "nombre": "Física I"
+    "nombre": "Matemática I"
 }
 
 ***ELIMINAR MATERIA

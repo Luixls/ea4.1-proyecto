@@ -5,21 +5,21 @@ GET a http://localhost:3000/secciones/listar
 
 ***AGREGAR SECCIÓN
 POST a http://localhost:3000/secciones/agregar
-    {
-        "nombre": "VIV/FI",
-        "profesor_id": 2,
-        "materia_id": 2,
-	"trimestre_id": 1
-    }
+{
+    "nombre": "VIV/FI",
+    "profesor_id": 2,
+    "materia_id": 2,
+    "trimestre_id": 1
+}
 
 ***EDITAR SECCIÓN
 PUT a http://localhost:3000/secciones/editar/***# de ID aquí***
-    {
-        "nombre": "VIV/FI",
-        "profesor_id": 2,
-        "materia_id": 2,
-	"trimestre_id": 1
-    }
+{
+    "nombre": "VIV/FI",
+    "profesor_id": 2,
+    "materia_id": 2,
+    "trimestre_id": 1
+}
 
 ***ELIMINAR SECCIÓN
 PUT a http://localhost:3000/secciones/eliminar/***# de ID aquí***

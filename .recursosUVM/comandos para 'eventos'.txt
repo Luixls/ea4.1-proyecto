@@ -5,49 +5,49 @@ GET a http://localhost:3000/eventos/listar
 
 ***AGREGAR EVENTO
 POST a http://localhost:3000/eventos/agregar
-    {
-        "nombre": "Clase Unidad I",
-        "numero_semana": 1,
-        "fecha": null,
-        "rasgos": "Clase",
-        "seccion_id": 2,
-	"materia_id": 2
-    }
+{
+    "nombre": "Clase Unidad I",
+    "numero_semana": 1,
+    "fecha": null,
+    "rasgos": "cLASE",
+    "seccion_id": 2,
+    "materia_id": 2
+}
 
 ***EDITAR EVENTO
 PUT a http://localhost:3000/eventos/editar/***# de ID aquí***
-    {
-        "nombre": "Clase Unidad I",
-        "numero_semana": 1,
-        "fecha": null,
-        "rasgos": "Clase",
-        "seccion_id": 2,
-	"materia_id": 2
-    }
+{
+    "nombre": "Clase Unidad I",
+    "numero_semana": 1,
+    "fecha": null,
+    "rasgos": "Clase",
+    "seccion_id": 2,
+    "materia_id": 2
+}
 
 ***AGREGAR EVENTO GLOBAL
 POST a http://localhost:3000/eventos/agregar
-    {
-        "nombre": "Día del Amor y la Amistad",
-        "numero_semana": null,
-        "fecha": "2024-02-14",
-        "rasgos": "Evento con actividades especiales",
-        "seccion_id": null,
-        "materia_id": null,
-        "es_global": 1
-    }
+{
+    "nombre": "Día del Amor y la Amistad",
+    "numero_semana": null,
+    "fecha": "2024-02-14",
+    "rasgos": "actividades especiales",
+    "seccion_id": null,
+    "materia_id": null,
+    "es_global": 1
+}
 
 ***EDITAR EVENTO GLOBAL
 PUT a http://localhost:3000/eventos/editar/***# de ID aquí***
-    {
-        "nombre": "Día del Amor y la Amistad",
-        "numero_semana": null,
-        "fecha": "2024-02-14",
-        "rasgos": "Evento con actividades especiales",
-        "seccion_id": null,
-        "materia_id": null,
-        "es_global": 1
-    }
+{
+    "nombre": "Día del Amor y la Amistad",
+    "numero_semana": null,
+    "fecha": "2024-02-14",
+    "rasgos": "Evento de Baile y Música",
+    "seccion_id": null,
+    "materia_id": null,
+    "es_global": 1
+}
 
 ***ELIMINAR EVENTO
 PUT a http://localhost:3000/eventos/eliminar/***# de ID aquí***
