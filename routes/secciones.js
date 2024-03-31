@@ -10,8 +10,7 @@ router.get("/listar", (req, res) => {
     .listarSecciones()
     .then((secciones) => res.render("listarSecciones", { secciones }))
     .catch((err) => res.status(500).send(err.error));
-});
-// Luego validaremos validarToken(['director', 'profesor', 'estudiante'])
+}); // Luego validaremos validarToken(['director', 'profesor', 'estudiante'])
 router.post(
   "/agregar",
   validarSeccion,

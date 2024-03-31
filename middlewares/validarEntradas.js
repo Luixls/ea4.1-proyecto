@@ -160,10 +160,46 @@ const validarEvento = [
   },
 ];
 
+const validarAsignarEventos = [
+  // Validar ID de evento(s)
+  check("evento_id")
+    .trim()
+    .notEmpty()
+    .withMessage("El ID de evento(s) es obligatorio.")
+    .isInt({ min: 1 })
+    .withMessage("El ID del evento(s) debe ser un número entero positivo."),
+
+  // Validar ID de materia
+  check("materia_id")
+    .trim()
+    .notEmpty()
+    .withMessage("El ID de la materia es obligatorio.")
+    .isInt({ min: 1 })
+    .withMessage("El ID de la materia debe ser un número entero positivo."),
+
+  // Validar ID de sección
+  check("seccion_id")
+    .trim()
+    .notEmpty()
+    .withMessage("El ID de la sección es obligatorio.")
+    .isInt({ min: 1 })
+    .withMessage("El ID de la sección debe ser un número entero positivo."),
+
+  // Middleware para manejar los errores de validación
+  (req, res, next) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errores: errors.array() });
+    }
+    next();
+  },
+];
+
 module.exports = {
   validarProfesor,
   validarMateria,
   validarSeccion,
   validarTrimestre,
   validarEvento,
+  validarAsignarEventos,
 };

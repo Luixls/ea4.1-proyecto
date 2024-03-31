@@ -6,7 +6,10 @@ const {
   validarToken,
   validarTokenEventoGlobalNoGlobal,
 } = require("../middlewares/validarTokens");
-const { validarEvento } = require("../middlewares/validarEntradas");
+const {
+  validarEvento,
+  validarAsignarEventos,
+} = require("../middlewares/validarEntradas");
 
 // Rutas para Eventos
 router.get("/listar", (req, res) => {
@@ -43,6 +46,7 @@ router.get("/profesores/:fechaConsulta", (req, res) => {
 });
 router.post(
   "/asignar",
+  validarAsignarEventos,
   validarToken(["profesor", "director"]),
   eventosController.asignarEventosGenericos
 );
