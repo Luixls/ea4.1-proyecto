@@ -62,15 +62,11 @@ INSERT INTO trimestres (nombre, fecha_inicio, fecha_fin) VALUES ('2024B', '2024-
 
 INSERT INTO profesores (nombre) VALUES ('Juan Pérez');
 
+INSERT INTO materias (nombre) VALUES ('Materia Ejemplo');
 
 INSERT INTO secciones (nombre, profesor_id, materia_id, trimestre_id) VALUES ('VIV/FI', 1, 1, 1);
 
--- Eventos globales
-INSERT INTO eventos (nombre, numero_semana, fecha, rasgos, es_global) VALUES ('Bienvenida al Trimestre', NULL, '2024-01-08', 'Bienvenida al 2024A', TRUE);
-INSERT INTO eventos (nombre, numero_semana, fecha, rasgos, es_global) VALUES ('Corte de Notas 1', NULL, '2024-02-02', 'Corte de Notas', TRUE);
-INSERT INTO eventos (nombre, numero_semana, fecha, rasgos, es_global) VALUES ('Día Feriado - Aniversario de la Facultad de Ingeniería', NULL, '2024-03-22', 'Feriado', TRUE);
-
--- Eventos específicos de sección
+-- Eventos no globales
 INSERT INTO eventos (nombre, numero_semana, fecha, rasgos, materia_id, seccion_id, es_global) VALUES ('Clase Unidad I', 1, NULL, 'Clase', 1, 1, FALSE);
 INSERT INTO eventos (nombre, numero_semana, fecha, rasgos, materia_id, seccion_id, es_global) VALUES ('Clase Unidad I, Continuación', 2, NULL, 'Clase', 1, 1, FALSE);
 INSERT INTO eventos (nombre, numero_semana, fecha, rasgos, materia_id, seccion_id, es_global) VALUES ('Evaluación Unidad I', 3, NULL, 'Evaluación, Ponderación 20%', 1, 1, FALSE);
@@ -84,3 +80,8 @@ INSERT INTO eventos (nombre, numero_semana, fecha, rasgos, materia_id, seccion_i
 INSERT INTO eventos (nombre, numero_semana, fecha, rasgos, materia_id, seccion_id, es_global) VALUES ('Clase Unidad IV, Continuación', 11, NULL, 'Clase', 1, 1, FALSE);
 INSERT INTO eventos (nombre, numero_semana, fecha, rasgos, materia_id, seccion_id, es_global) VALUES ('Evaluación Unidad IV', 12, NULL, 'Evaluación, Ponderación 25%', 1, 1, FALSE);
 INSERT INTO eventos (nombre, numero_semana, fecha, rasgos, materia_id, seccion_id, es_global) VALUES ('Autoevaluación & Finalización', 12, NULL, 'Ponderación 5%', 1, 1, FALSE);
+
+-- Eventos globales
+INSERT INTO eventos (nombre, numero_semana, fecha, rasgos, es_global) VALUES ('Bienvenida al Trimestre', NULL, '2024-01-08', 'Bienvenida al 2024A', TRUE);
+INSERT INTO eventos (nombre, numero_semana, fecha, rasgos, es_global) VALUES ('Corte de Notas 1', NULL, '2024-02-02', 'Corte de Notas', TRUE);
+INSERT INTO eventos (nombre, numero_semana, fecha, rasgos, es_global) VALUES ('Día Feriado - Aniversario de la Facultad de Ingeniería', NULL, '2024-03-22', 'Feriado', TRUE);

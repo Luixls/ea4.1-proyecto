@@ -6,10 +6,10 @@ GET a http://localhost:3000/eventos/listar
 ***AGREGAR EVENTO
 POST a http://localhost:3000/eventos/agregar
 {
-    "nombre": "Clase Unidad I",
+    "nombre": "Presentación Virtual",
     "numero_semana": 1,
     "fecha": null,
-    "rasgos": "cLASE",
+    "rasgos": "Clase",
     "seccion_id": 2,
     "materia_id": 2
 }
@@ -17,10 +17,10 @@ POST a http://localhost:3000/eventos/agregar
 ***EDITAR EVENTO
 PUT a http://localhost:3000/eventos/editar/***# de ID aquí***
 {
-    "nombre": "Clase Unidad I",
+    "nombre": "Presentación Virtual",
     "numero_semana": 1,
     "fecha": null,
-    "rasgos": "Clase",
+    "rasgos": "Charla sobre la materia",
     "seccion_id": 2,
     "materia_id": 2
 }
@@ -31,7 +31,7 @@ POST a http://localhost:3000/eventos/agregar
     "nombre": "Día del Amor y la Amistad",
     "numero_semana": null,
     "fecha": "2024-02-14",
-    "rasgos": "actividades especiales",
+    "rasgos": "Evento con actividades especiales",
     "seccion_id": null,
     "materia_id": null,
     "es_global": 1
@@ -43,7 +43,7 @@ PUT a http://localhost:3000/eventos/editar/***# de ID aquí***
     "nombre": "Día del Amor y la Amistad",
     "numero_semana": null,
     "fecha": "2024-02-14",
-    "rasgos": "Evento de Baile y Música",
+    "rasgos": "Evento de baile y celebración",
     "seccion_id": null,
     "materia_id": null,
     "es_global": 1
@@ -54,3 +54,11 @@ PUT a http://localhost:3000/eventos/eliminar/***# de ID aquí***
 
 ***VER LOS EVENTOS DENTRO DE 2 SEMANAS PARA LOS PROFESORES
 http://localhost:3000/eventos/profesores/***FECHA AAAA-MM-DD****
+
+***ASIGNAR EVENTOS A SECCIÓN/MATERIA ESPECÍFICOS
+POST a http://localhost:3000/eventos/asignar
+{
+  "evento_id": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12], 
+  "seccion_id": 2,
+  "materia_id": 2
+}

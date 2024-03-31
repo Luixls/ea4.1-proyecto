@@ -10,6 +10,7 @@
     <table>
       <thead>
         <tr>
+          <th>ID Profesor</th>
           <th>Profesor</th>
           <th>Materia</th>
           <th>Sección</th>
@@ -19,6 +20,7 @@
       <tbody>
         <% datos.forEach(dato => { %>
         <tr>
+          <td><%= dato.profesor_id %></td>
           <td><%= dato.profesor_nombre %></td>
           <td><%= dato.materia_nombre %></td>
           <td><%= dato.seccion_nombre %></td>

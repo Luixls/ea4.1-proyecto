@@ -11,6 +11,7 @@
     <table>
       <thead>
         <tr>
+          <th>ID</th>
           <th>Nombre</th>
           <th>Número de Semana</th>
           <th>Fecha</th>
@@ -23,6 +24,7 @@
       <tbody>
         <% if(eventos.length > 0) { %> <% eventos.forEach(function(evento) { %>
         <tr>
+          <td><%= evento.evento_id %></td>
           <td><%= evento.nombre %></td>
           <td><%= evento.numero_semana %></td>
           <td><%= evento.fecha ? evento.fecha : 'No especificado' %></td>
@@ -33,7 +35,7 @@
         </tr>
         <% }); %> <% } else { %>
         <tr>
-          <td colspan="7">No hay eventos para mostrar.</td>
+          <td colspan="8">No hay eventos para mostrar.</td>
         </tr>
         <% } %>
       </tbody>

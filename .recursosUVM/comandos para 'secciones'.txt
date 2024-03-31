@@ -6,7 +6,7 @@ GET a http://localhost:3000/secciones/listar
 ***AGREGAR SECCIÓN
 POST a http://localhost:3000/secciones/agregar
 {
-    "nombre": "VIV/FI",
+    "nombre": "VIV",
     "profesor_id": 2,
     "materia_id": 2,
     "trimestre_id": 1

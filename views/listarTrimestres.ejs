@@ -11,6 +11,7 @@
     <table>
       <thead>
         <tr>
+          <th>ID</th>
           <th>Nombre</th>
           <th>Fecha de Inicio</th>
           <th>Fecha de Fin</th>
@@ -19,6 +20,7 @@
       <tbody>
         <% trimestres.forEach(trimestre => { %>
         <tr>
+          <td><%= trimestre.trimestre_id %></td>
           <td><%= trimestre.nombre %></td>
           <td><%= trimestre.fecha_inicio %></td>
           <td><%= trimestre.fecha_fin %></td>

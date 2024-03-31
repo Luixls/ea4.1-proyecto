@@ -41,5 +41,10 @@ router.get("/profesores/:fechaConsulta", (req, res) => {
     })
     .catch((err) => res.status(500).send(err.error));
 });
+router.post(
+  "/asignar",
+  validarToken(["profesor", "director"]),
+  eventosController.asignarEventosGenericos
+);
 
 module.exports = router;

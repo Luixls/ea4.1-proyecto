@@ -1,4 +1,6 @@
 const pool = require("../config/dbPool");
+const moment = require("moment");
+moment.locale("es"); // Esto es para usar el módulo de Node.js "moment" en español
 
 class MateriasController {
   static listarMaterias() {

@@ -107,7 +107,7 @@ class EventosController {
   static async proximosEventosProfesores(fechaConsulta) {
     return new Promise(async (resolve, reject) => {
       let fechaConsultaMoment = moment(fechaConsulta, "YYYY-MM-DD");
-      let fechaFin = fechaConsultaMoment.clone().add(2, "weeks");
+      let fechaFin = fechaConsultaMoment.clone().add(1, "weeks");
 
       let query = `
               SELECT 
@@ -160,6 +160,78 @@ class EventosController {
           }
         }
       );
+    });
+  }
+
+  static asignarEventosGenericos(req, res) {
+    const { evento_id, seccion_id, materia_id } = req.body;
+    const queryFechaInicioTrimestre = `
+            SELECT trimestres.fecha_inicio
+            FROM secciones
+            JOIN trimestres ON secciones.trimestre_id = trimestres.trimestre_id
+            WHERE secciones.seccion_id = ?`;
+
+    pool.query(queryFechaInicioTrimestre, [seccion_id], (err, results) => {
+      if (err || results.length === 0) {
+        res.status(500).json({
+          error:
+            "Error al obtener la fecha de inicio del trimestre para la sección.",
+        });
+        return;
+      }
+
+      const fechaInicioTrimestre = moment(results[0].fecha_inicio);
+
+      evento_id.forEach((evento_id) => {
+        const queryEventoGenerico = `SELECT * FROM eventos WHERE evento_id = ? AND es_global = FALSE`;
+
+        pool.query(
+          queryEventoGenerico,
+          [evento_id],
+          (err, resultadosEvento) => {
+            if (err || resultadosEvento.length === 0) {
+              res
+                .status(500)
+                .json({ error: "Error al obtener evento genérico." });
+              return;
+            }
+
+            const evento = resultadosEvento[0];
+            const fechaEvento = fechaInicioTrimestre
+              .clone()
+              .add(evento.numero_semana - 1, "weeks")
+              .endOf("isoWeek")
+              .format("YYYY-MM-DD");
+
+            const queryInsertarEvento = `
+                        INSERT INTO eventos (nombre, numero_semana, fecha, rasgos, materia_id, seccion_id, es_global) 
+                        VALUES (?, ?, ?, ?, ?, ?, ?)`;
+
+            pool.query(
+              queryInsertarEvento,
+              [
+                evento.nombre,
+                evento.numero_semana,
+                fechaEvento,
+                evento.rasgos,
+                materia_id,
+                seccion_id,
+                false,
+              ],
+              (error, resultadosInsercion) => {
+                if (error) {
+                  res.status(500).json({
+                    error: "Error al asignar evento a la sección y materia.",
+                  });
+                  return;
+                }
+              }
+            );
+          }
+        );
+      });
+
+      res.status(200).json({ mensaje: "Eventos asignados correctamente." });
     });
   }
 }
