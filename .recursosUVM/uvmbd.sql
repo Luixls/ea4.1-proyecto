@@ -59,11 +59,9 @@ CREATE TABLE usuarios (
 -- Creación de datos de ejemplo para cada tabla (excepto usuarios)
 INSERT INTO trimestres (nombre, fecha_inicio, fecha_fin) VALUES ('2024A', '2024-01-08', '2024-04-12');
 INSERT INTO trimestres (nombre, fecha_inicio, fecha_fin) VALUES ('2024B', '2024-05-06', '2024-08-16');
-INSERT INTO trimestres (nombre, fecha_inicio, fecha_fin) VALUES ('2024C', '2024-09-02', '2024-12-13');
 
 INSERT INTO profesores (nombre) VALUES ('Juan Pérez');
 
-INSERT INTO materias (nombre) VALUES ('Matemática I');
 
 INSERT INTO secciones (nombre, profesor_id, materia_id, trimestre_id) VALUES ('VIV/FI', 1, 1, 1);
 
@@ -76,3 +74,13 @@ INSERT INTO eventos (nombre, numero_semana, fecha, rasgos, es_global) VALUES ('D
 INSERT INTO eventos (nombre, numero_semana, fecha, rasgos, materia_id, seccion_id, es_global) VALUES ('Clase Unidad I', 1, NULL, 'Clase', 1, 1, FALSE);
 INSERT INTO eventos (nombre, numero_semana, fecha, rasgos, materia_id, seccion_id, es_global) VALUES ('Clase Unidad I, Continuación', 2, NULL, 'Clase', 1, 1, FALSE);
 INSERT INTO eventos (nombre, numero_semana, fecha, rasgos, materia_id, seccion_id, es_global) VALUES ('Evaluación Unidad I', 3, NULL, 'Evaluación, Ponderación 20%', 1, 1, FALSE);
+INSERT INTO eventos (nombre, numero_semana, fecha, rasgos, materia_id, seccion_id, es_global) VALUES ('Clase Unidad II', 4, NULL, 'Clase', 1, 1, FALSE);
+INSERT INTO eventos (nombre, numero_semana, fecha, rasgos, materia_id, seccion_id, es_global) VALUES ('Clase Unidad II, Continuación', 5, NULL, 'Clase', 1, 1, FALSE);
+INSERT INTO eventos (nombre, numero_semana, fecha, rasgos, materia_id, seccion_id, es_global) VALUES ('Evaluación Unidad II', 6, NULL, 'Evaluación, Ponderación 25%', 1, 1, FALSE);
+INSERT INTO eventos (nombre, numero_semana, fecha, rasgos, materia_id, seccion_id, es_global) VALUES ('Clase Unidad III', 7, NULL, 'Clase', 1, 1, FALSE);
+INSERT INTO eventos (nombre, numero_semana, fecha, rasgos, materia_id, seccion_id, es_global) VALUES ('Clase Unidad III, Continuación', 8, NULL, 'Clase', 1, 1, FALSE);
+INSERT INTO eventos (nombre, numero_semana, fecha, rasgos, materia_id, seccion_id, es_global) VALUES ('Evaluación Unidad III', 9, NULL, 'Evaluación, Ponderación 25%', 1, 1, FALSE);
+INSERT INTO eventos (nombre, numero_semana, fecha, rasgos, materia_id, seccion_id, es_global) VALUES ('Clase Unidad IV', 10, NULL, 'Clase', 1, 1, FALSE);
+INSERT INTO eventos (nombre, numero_semana, fecha, rasgos, materia_id, seccion_id, es_global) VALUES ('Clase Unidad IV, Continuación', 11, NULL, 'Clase', 1, 1, FALSE);
+INSERT INTO eventos (nombre, numero_semana, fecha, rasgos, materia_id, seccion_id, es_global) VALUES ('Evaluación Unidad IV', 12, NULL, 'Evaluación, Ponderación 25%', 1, 1, FALSE);
+INSERT INTO eventos (nombre, numero_semana, fecha, rasgos, materia_id, seccion_id, es_global) VALUES ('Autoevaluación & Finalización', 12, NULL, 'Ponderación 5%', 1, 1, FALSE);
