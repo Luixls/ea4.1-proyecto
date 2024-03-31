@@ -103,6 +103,65 @@ class EventosController {
       }
     });
   }
+
+  static async proximosEventosProfesores(fechaConsulta) {
+    return new Promise(async (resolve, reject) => {
+      let fechaConsultaMoment = moment(fechaConsulta, "YYYY-MM-DD");
+      let fechaFin = fechaConsultaMoment.clone().add(2, "weeks");
+
+      let query = `
+              SELECT 
+                  profesores.nombre AS profesor_nombre, 
+                  eventos.nombre AS evento_nombre, 
+                  eventos.fecha, 
+                  eventos.numero_semana, 
+                  eventos.rasgos, 
+                  eventos.es_global, 
+                  trimestres.fecha_inicio AS trimestre_inicio
+              FROM eventos
+              LEFT JOIN secciones ON eventos.seccion_id = secciones.seccion_id
+              LEFT JOIN profesores ON secciones.profesor_id = profesores.profesor_id
+              LEFT JOIN trimestres ON secciones.trimestre_id = trimestres.trimestre_id
+              WHERE 
+                  (
+                      eventos.es_global = TRUE
+                      AND YEARWEEK(eventos.fecha, 1) BETWEEN YEARWEEK(?, 1) AND YEARWEEK(?, 1)
+                  )
+                  OR 
+                  (
+                      eventos.fecha BETWEEN ? AND ?
+                  )
+                  OR 
+                  (
+                      eventos.numero_semana IS NOT NULL
+                      AND YEARWEEK(DATE_ADD(trimestres.fecha_inicio, INTERVAL (eventos.numero_semana - 1) * 7 DAY), 1) BETWEEN YEARWEEK(?, 1) AND YEARWEEK(?, 1)
+                  )
+              GROUP BY eventos.evento_id
+              ORDER BY eventos.fecha ASC, eventos.numero_semana ASC`;
+
+      pool.query(
+        query,
+        [
+          fechaConsulta,
+          fechaFin.format("YYYY-MM-DD"),
+          fechaConsulta,
+          fechaFin.format("YYYY-MM-DD"),
+          fechaConsulta,
+          fechaFin.format("YYYY-MM-DD"),
+        ],
+        (err, rows) => {
+          if (err) {
+            reject({
+              error:
+                "Error al obtener los próximos eventos de todos los profesores",
+            });
+          } else {
+            resolve(rows);
+          }
+        }
+      );
+    });
+  }
 }
 
 module.exports = EventosController;

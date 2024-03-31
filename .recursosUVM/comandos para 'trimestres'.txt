@@ -21,6 +21,3 @@ PUT a http://localhost:3000/trimestres/editar/***# de ID aquí***
 
 ***ELIMINAR TRIMESTRE
 PUT a http://localhost:3000/trimestres/eliminar/***# de ID aquí***
-
-***VER ACTIVIDADES POR TRIMESTRE-NÚMERO DE SEMANA
-GET a http://localhost:3000/calendario/actividades/***nombre trimestre***/***número de semana*

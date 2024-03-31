@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Próximos Eventos de Profesores</title>
+    <link rel="stylesheet" href="/css/estilos.css" />
+  </head>
+  <body>
+    <h1>Próximos Eventos de Profesores</h1>
+    <table>
+      <thead>
+        <tr>
+          <th>Profesor</th>
+          <th>Evento</th>
+          <th>Fecha</th>
+          <th>Rasgos</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% eventos.forEach(evento => { %>
+        <tr>
+          <td><%= evento.profesor_nombre %></td>
+          <td><%= evento.evento_nombre %></td>
+          <td>
+            <%= evento.fecha ? moment(evento.fecha).format('LL') : "Por definir"
+            %>
+          </td>
+          <td><%= evento.rasgos %></td>
+        </tr>
+        <% }) %>
+      </tbody>
+    </table>
+  </body>
+</html>

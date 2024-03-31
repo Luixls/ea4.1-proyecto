@@ -26,7 +26,7 @@ const crearAdminPredeterminado = require("./scripts/inicializarAdmin");
 
 // Automatizar creación de admin
 crearAdminPredeterminado().then(() => {
-  // Para iniciar el servidor "npx nodemon app.js"
+  // Para iniciar el servidor --> "npx nodemon app.js"
   app.listen(3000, () => {
     console.log("Servidor corriendo en el puerto 3000");
   });

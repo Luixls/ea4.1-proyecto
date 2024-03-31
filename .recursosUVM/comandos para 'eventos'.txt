@@ -52,5 +52,5 @@ PUT a http://localhost:3000/eventos/editar/***# de ID aquí***
 ***ELIMINAR EVENTO
 PUT a http://localhost:3000/eventos/eliminar/***# de ID aquí***
 
-***VER LOS EVENTOS FUTUROS DE UN PROFESOR
-GET A http://localhost:3000/eventos/profesor/***# de ID aquí***/***FECHA AAAA-MM-DD****
+***VER LOS EVENTOS DENTRO DE 2 SEMANAS PARA LOS PROFESORES
+http://localhost:3000/eventos/profesores/***FECHA AAAA-MM-DD****

@@ -1,5 +1,6 @@
 const express = require("express");
 const router = express.Router();
+const moment = require("moment");
 const eventosController = require("../controllers/eventosController");
 const {
   validarToken,
@@ -31,5 +32,14 @@ router.delete(
   validarToken(["director"]),
   eventosController.eliminarEvento
 );
+router.get("/profesores/:fechaConsulta", (req, res) => {
+  const { fechaConsulta } = req.params;
+  eventosController
+    .proximosEventosProfesores(fechaConsulta)
+    .then((eventos) => {
+      res.render("eventosProfesores", { eventos, moment });
+    })
+    .catch((err) => res.status(500).send(err.error));
+});
 
 module.exports = router;
