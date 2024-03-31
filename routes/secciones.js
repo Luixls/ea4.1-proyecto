@@ -32,14 +32,15 @@ router.get("/eventos/:id", (req, res) => {
   const seccionId = req.params.id;
   seccionesController
     .eventosSeccion(seccionId)
-    .then((data) => {
-      if (data.length > 0) {
-        res.render("eventosSeccion", {
-          eventos: data,
-          seccionInfo: data[0],
-        });
-      } else {
+    .then(({ seccionInfo, eventos }) => {
+      if (!seccionInfo) {
+        // Verifica si seccionInfo no existe
         res.send("No se encontraron detalles para la sección especificada.");
+      } else {
+        res.render("eventosSeccion", {
+          eventos: eventos,
+          seccionInfo: seccionInfo, // Asegúrate de pasar seccionInfo a la vista
+        });
       }
     })
     .catch((err) => res.status(500).send(err.error));

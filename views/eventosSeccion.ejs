@@ -7,10 +7,14 @@
     <link rel="stylesheet" href="/css/estilos.css" />
   </head>
   <body>
+    <% if(seccionInfo) { %>
     <h1>Eventos de la Sección: <%= seccionInfo.seccion_nombre %></h1>
     <h2>Profesor: <%= seccionInfo.profesor_nombre %></h2>
     <h2>Materia: <%= seccionInfo.materia_nombre %></h2>
     <h2>Trimestre: <%= seccionInfo.trimestre_nombre %></h2>
+    <% } else { %>
+    <p>No se encontraron detalles para la sección especificada.</p>
+    <% } %> <% if(eventos && eventos.length > 0) { %>
     <table>
       <thead>
         <tr>
@@ -33,5 +37,8 @@
         <% }) %>
       </tbody>
     </table>
+    <% } else { %>
+    <p>No hay eventos para mostrar.</p>
+    <% } %>
   </body>
 </html>

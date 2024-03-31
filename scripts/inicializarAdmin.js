@@ -1,9 +1,11 @@
 const bcrypt = require("bcrypt");
 const pool = require("../config/dbPool");
+require("dotenv").config();
 
-const adminUsuario = "admin";
-const adminContraseña = "admin";
-const adminRol = "director";
+// Utilizamos las varibales de entorno para obtener las credenciales a usar
+const adminUsuario = process.env.ADMIN_USER;
+const adminContraseña = process.env.ADMIN_PASS;
+const adminRol = process.env.ADMIN_ROLE;
 
 async function crearAdminPredeterminado() {
   try {

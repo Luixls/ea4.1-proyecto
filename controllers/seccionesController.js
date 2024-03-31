@@ -80,41 +80,66 @@ class SeccionesController {
 
   static eventosSeccion(seccionId) {
     return new Promise((resolve, reject) => {
-      const query = `
+      // Primera consulta: Obtener detalles de la sección
+      const queryDetallesSeccion = `
+          SELECT 
+              secciones.nombre AS seccion_nombre, 
+              profesores.nombre AS profesor_nombre, 
+              materias.nombre AS materia_nombre, 
+              trimestres.nombre AS trimestre_nombre
+          FROM secciones
+          JOIN profesores ON secciones.profesor_id = profesores.profesor_id
+          JOIN materias ON secciones.materia_id = materias.materia_id
+          JOIN trimestres ON secciones.trimestre_id = trimestres.trimestre_id
+          WHERE secciones.seccion_id = ?`;
+
+      pool.query(queryDetallesSeccion, [seccionId], (err, resultSeccion) => {
+        if (err || resultSeccion.length === 0) {
+          reject({
+            error: "Error al obtener los detalles de la sección",
+          });
+          return;
+        }
+
+        const seccionInfo = {
+          seccion_nombre: resultSeccion[0].seccion_nombre,
+          profesor_nombre: resultSeccion[0].profesor_nombre,
+          materia_nombre: resultSeccion[0].materia_nombre,
+          trimestre_nombre: resultSeccion[0].trimestre_nombre,
+        };
+
+        // Segunda consulta: Obtener eventos relacionados con la sección
+        const queryEventos = `
             SELECT 
-                secciones.nombre AS seccion_nombre, 
-                profesores.nombre AS profesor_nombre, 
-                materias.nombre AS materia_nombre, 
-                trimestres.nombre AS trimestre_nombre,
+                eventos.evento_id, 
                 eventos.nombre AS evento_nombre, 
                 eventos.numero_semana, 
                 eventos.fecha, 
                 eventos.rasgos, 
                 eventos.es_global
-            FROM secciones
-            LEFT JOIN profesores ON secciones.profesor_id = profesores.profesor_id
-            LEFT JOIN materias ON secciones.materia_id = materias.materia_id
-            LEFT JOIN trimestres ON secciones.trimestre_id = trimestres.trimestre_id
-            LEFT JOIN eventos ON secciones.seccion_id = eventos.seccion_id OR eventos.es_global = TRUE
-            WHERE secciones.seccion_id = ? OR eventos.es_global = TRUE
-            GROUP BY eventos.evento_id
+            FROM eventos
+            WHERE eventos.seccion_id = ? OR eventos.es_global = TRUE
             ORDER BY eventos.es_global DESC, eventos.numero_semana ASC, eventos.fecha ASC`;
 
-      pool.query(query, [seccionId], (err, rows) => {
-        if (err) {
-          reject({
-            error:
-              "Error al obtener los detalles de la sección incluyendo eventos globales",
-          });
-        } else {
-          const eventosFormateados = rows.map((evento) => {
+        pool.query(queryEventos, [seccionId], (err, eventos) => {
+          if (err) {
+            reject({
+              error:
+                "Error al obtener los eventos de la sección incluyendo eventos globales",
+            });
+            return;
+          }
+
+          // Formatear cada fecha de evento antes de enviar
+          const eventosFormateados = eventos.map((evento) => {
             if (evento.fecha) {
               evento.fecha = moment(evento.fecha).format("LL");
             }
             return evento;
           });
-          resolve(eventosFormateados);
-        }
+
+          resolve({ seccionInfo, eventos: eventosFormateados });
+        });
       });
     });
   }
