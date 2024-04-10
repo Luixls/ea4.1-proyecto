@@ -41,17 +41,13 @@ Una vez creado el archivo, se puede ejecutar VSCode y arrastrar dicho archivo pa
 poder editarlo. Ya que se están trabajando los valores por defecto de la BD, si el usuario lo
 desea, puede copiar y pegar el texto a continuación al archivo “datos.env":
 
-# Archivo datos.env
-# Este es el archivo que el usuario debe crear en su máquina local, y ajustar a sus necesidades.
-# El usuario puede cambiar contraseñas, puertos, nombre de usuario, etc. según vea conveniente.
-# Datos para establecer conexión a la BD
 DB_HOST=127.0.0.1
 DB_PORT=3306
 DB_USER=root
 DB_PASS=123
 DB_NAME=uvmbd
 JWT_SECRET=uvmpanas1337contraseñasecreta
-# Credenciales para crear la cuenta "admin" por defecto al inicializar el sistema.
+
 ADMIN_USER=admin
 ADMIN_PASS=admin
 ADMIN_ROLE=director
